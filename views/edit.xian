@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #24303f;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #dde3ea;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(20, 35, 60, 0.06);
+    }
+    .card h1 { margin: 0 0 4px; font-size: 22px; }
+    .subtitle { margin: 0 0 22px; color: #6b7a8d; font-size: 14px; }
+
+    .field { display: flex; flex-direction: column; margin-bottom: 14px; }
+    .field label {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #45566b;
+    }
+    .field input {
+      padding: 9px 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: #fff;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    button {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+    }
+    button:hover { background: #1d4ed8; }
+    a.cancel {
+      padding: 10px 18px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      background: #fff;
+      color: #45566b;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a.cancel:hover { background: #f1f5f9; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Edit Scopio Record</h1>
+      <p class="subtitle">Record #{{data.id}}</p>
+
+      <!-- ACT 3: pre-filled update form -->
+      <form method="POST" action="/scopio/{{data.id}}/update">
+        <div class="row">
+          <div class="field">
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" value="{{data.FirstName}}" required />
+          </div>
+          <div class="field">
+            <label for="MiddleName">Middle Name</label>
+            <input type="text" id="MiddleName" name="MiddleName" value="{{data.MiddleName}}" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="LastName">Last Name</label>
+          <input type="text" id="LastName" name="LastName" value="{{data.LastName}}" required />
+        </div>
+
+        <div class="field">
+          <label for="Program">Program</label>
+          <input type="text" id="Program" name="Program" value="{{data.Program}}" required />
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="YearLevel">Year Level</label>
+            <input type="text" id="YearLevel" name="YearLevel" value="{{data.YearLevel}}" required />
+          </div>
+          <div class="field">
+            <label for="Section">Section</label>
+            <input type="text" id="Section" name="Section" value="{{data.Section}}" required />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Update Record</button>
+          <a class="cancel" href="/scopio">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
